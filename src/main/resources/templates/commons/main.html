@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta
+	name="viewport"
+	content="width=device-width, initial-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<!-- Import CSS -->
+<link 
+	rel="stylesheet"
+	type="text/css"
+	th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" />
+<link 
+	rel="stylesheet"
+	type="text/css"
+	th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" />
+<link 
+	rel="stylesheet"
+	type="text/css"
+	th:href="@{/webjars/datatables/1.10.16/css/dataTables.bootstrap4.min.css}" />
+<link 
+	rel="stylesheet"
+	type="text/css"
+	th:href="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.css}" />
+<!-- custom -->
+<link
+	rel="stylesheet"
+	type="text/css"
+	th:href="@{/resources/css/main.css}" />
+	
+<link rel="stylesheet" type="text/css"
+		th:href="@{/resources/css/app/tw005/tw005.css}" />
+
+<!-- Import JavaScript -->
+
+<!-- Generate Base URL -->
+<script>var baseUrl = '[[@{/}]]';</script>
+
+<!-- webjars -->
+<script
+	type="text/javascript"
+	th:src="@{/webjars/momentjs/2.20.1/min/moment.min.js}"></script>
+<script
+	type="text/javascript"
+	th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+<script
+	type="text/javascript"
+	th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.js}"></script>
+<script
+	type="text/javascript"
+	th:src="@{/webjars/popper.js/1.14.1/umd/popper.min.js}"></script>
+<script
+	type="text/javascript"
+	th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.min.js}"></script>
+<script
+	type="text/javascript"
+	th:src="@{/webjars/datatables/1.10.16/js/jquery.dataTables.min.js}"></script>
+<script
+	type="text/javascript"
+	th:src="@{/webjars/datatables/1.10.16/js/dataTables.bootstrap4.min.js}"></script>
+
+<script type="text/javascript"
+	th:src="@{/resources/js/common/common.js}"></script>
+	
+<script type="text/javascript"
+	th:src="@{/resources/js/common/validateCommon.js}"></script>
+	
+<script type="text/javascript" th:inline="javascript" charset="UTF-8"
+		th:src="@{/resources/js/app/tw005/tw005.js}"></script>
+<script th:inline="javascript">
+
+     /*<![CDATA[*/
+       
+        const TITLE_WARNING  = /*[[${@baseTag.message('common.popup.title.warning')}]]*/ '';
+        const TITLE_ERROR  = /*[[${@baseTag.message('common.popup.title.error')}]]*/ '';
+        const TITLE_CONFIRM  = /*[[${@baseTag.message('common.popup.title.confirm')}]]*/ '';
+        
+        const VALID_REQUIRED_MSG  = /*[[${@baseTag.message('common.validate.required')}]]*/ '';
+        const VALID_MAXLENGTH_MSG  = /*[[${@baseTag.message('common.validate.maxLength')}]]*/ '';
+        const VALID_DECIMAL_MSG  = /*[[${@baseTag.message('common.validate.decimalPart')}]]*/ '';
+        const VALID_NUMERIC_MSG  = /*[[${@baseTag.message('common.validate.numeric')}]]*/ '';
+        const VALID_FROM_TO_MSG  = /*[[${@baseTag.message('common.validate.fromTo')}]]*/ '';
+        const VALID_DATE_MSG  = /*[[${@baseTag.message('common.validate.checkDate')}]]*/ '';
+        var allSubjectTypeTitle = [[#{tw007.allSubjectType}]];
+		var allExamTitle = [[#{tw005.item.allExam}]];
+        
+      /*]]>*/
+   </script> 
+</head>
+<body>
+	<!-- HEADER -->
+	<header class = "bd-navbar">
+	<th:block th:replace="commons/header :: header" />
+	</header >
+	<!-- CONTENT -->
+	<!-- CONTENT_1. Common Message -->
+
+	<!-- CONTENT_2. Your APP Content -->
+	<div class="container center-wrapper header-margin">
+		<th:block layout:fragment="content" />
+	</div>
+
+	<!-- FOOTER -->
+	<th:block th:replace="commons/footer :: footer" />
+	
+	<!-- POPUP COMMON -->
+    <th:block th:replace="commons/popupCommon :: popup-common" />
+    
+    <th:block th:replace="app/tw005 :: popup-referQuestion" />
+</body>
+</html>

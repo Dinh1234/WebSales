@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{commons/main}">
+<head>
+<body>
+
+	<div layout:fragment="content" th:remove="tag">
+		<div class="col-md-12 row">
+			<div id="carbonads" class="col-md-5">
+				<span >
+					<span class="carbon-wrap h3 text-uppercase">
+						<a href="/tw007" class="carbon-img" rel="noopener sponsored">
+							<img th:src="@{/resources/images/home/list-test.jpg}" alt="create question" border="0" style="max-width: 130px;">
+						</a>
+						<a href="/tw007" class="carbon-text" rel="noopener sponsored">
+							<th:bock th:utext="${@baseTag.message('tw007.title')}">
+						</a>
+					</span>
+					<hr>
+					<a href="/tw007" class="carbon-poweredby" rel="noopener sponsored">
+					Tìm kiếm các đề thi được lưu trữ trong ngân hàng đề thi
+					</a>
+				</span>
+			</div>
+			<div class="col-md-2"></div>
+
+			<div th:if="${user.role} == ROLE_ADMIN" id="carbonads"
+				class="col-md-5">
+				<span >
+					<span class="carbon-wrap h3 text-uppercase">
+						<a href="/tw001" class="carbon-img" rel="noopener sponsored">
+							<img th:src="@{/resources/images/home/create-question.png}" alt="create question" border="0" style="max-width: 130px;">
+						</a>
+						<a href="/tw001" class="carbon-text" rel="noopener sponsored">
+							<th:bock th:utext="${@baseTag.message('tw001.title')}">
+						</a>
+					</span>
+					<hr>
+					<a href="/tw001" class="carbon-poweredby" rel="noopener sponsored">
+					Tạo đề thi của bạn. Cần chú ý đến kiểu đề thi, thời gian thi, ... để phát huy tối đa hiệu quả của đề thi
+					</a>
+				</span>
+			</div>
+			<div th:if="${user.role} == ROLE_ADMIN" class="col-md-2"></div>
+			<!-- <div th:if="${user.role} == ROLE_USER" id="carbonads"
+				class="col-md-5">
+				<span >
+					<span class="carbon-wrap h3 text-uppercase">
+						<a href="/tw002" class="carbon-img" rel="noopener sponsored">
+							<img th:src="@{/resources/images/home/anwser.png}" alt="create question" border="0" style="max-width: 130px;">
+						</a>
+						<a href="/tw002" class="carbon-text" rel="noopener sponsored">
+							<th:bock th:utext="${@baseTag.message('tw002.title')}">
+						</a>
+					</span>
+					<hr>
+					<a href="/tw002" class="carbon-poweredby" rel="noopener sponsored">
+
+					</a>
+				</span>
+			</div>
+			<div th:if="${user.role} == ROLE_USER" class="col-md-2"></div> -->
+			<div th:if="${user.role} == ROLE_USER" id="carbonads"
+				class="col-md-5">
+				<span >
+					<span class="carbon-wrap h3 text-uppercase">
+						<a href="/tw004" class="carbon-img" rel="noopener sponsored">
+							<img th:src="@{/resources/images/home/quick.png}" alt="create question" border="0" style="max-width: 130px;">
+						</a>
+						<a href="/tw004" class="carbon-text" rel="noopener sponsored">
+							<th:bock th:utext="${@baseTag.message('tw004.title')}">
+						</a>
+					</span>
+					<hr>
+					<a href="/tw004" class="carbon-poweredby" rel="noopener sponsored">
+						Để vào được phòng thi nhanh, thí sinh cần phải ghi nhớ ID của bài thi
+					</a>
+				</span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

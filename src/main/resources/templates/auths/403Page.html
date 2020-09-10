@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{commons/main}">
+<head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+
+		<h3 th:if="${message != null}" th:utext="${message}"
+			style="color: red;"></h3>
+
+		<div th:if="${userInfo != null}" th:utext="${userInfo}"></div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<link rel="stylesheet" th:href="@{/css/default.css}"  media="screen,print,tv" type="text/css" title="" />
+		<link rel="stylesheet" th:href="@{/css/head.css}"  media="screen,print,tv" type="text/css" title="" />
+		<title>[[#{config.title}]]</title>
+		<!--	
+			var check = /*[[${httpcontext}]]*/ ;
+			if ((check != '') && (location.protocol != 'https:')){
+	 			location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+			}
+		//-->
+	</head>
+		<frameset border="2" cols="199,*" frameborder="yes" framespacing="2" name="fs">
+			<frame name="navi" marginwidth="0" marginheight="0" scrolling="yes" th:src="@{/menu}">
+			<frame name="floor" marginwidth="0" marginheight="0" scrolling="auto" th:src="@{/start}">
+			<noframes>
+				<body>
+					[[#{info.AI0352}]]
+				</body>
+			</noframes>
+		</frameset>
+</html>

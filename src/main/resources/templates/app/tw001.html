@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{commons/main}">
+<head>
+<title th:text="${titleScreen}"></title>
+<link rel="stylesheet" type="text/css" th:href="@{/resources/css/app/tw001/tw001.css}" />
+<script type="text/javascript" th:inline="javascript" th:src="@{/resources/js/app/tw001/tw001.js}"></script>
+<script type="text/javascript" th:inline="javascript" th:src="@{/resources/js/app/tw001/tw001_submit.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+
+	var questionNo = [[#{tw001.question.questionNo}]];
+	var listQuestionClassification = [[${listQuestionClassification}]];
+	var questionSummary = [[#{tw001.question.questionSummary}]];
+	var deleteQuestionMsg = [[#{tw001.confirm.deleteQuestion}]];
+	var deleteAnswerMsg = [[#{tw001.confirm.deleteAnswer}]];
+	var deleteAllQuestionMsg = [[#{tw001.confirm.deleteAllQuestion}]];
+	var deleteAnswerConnectLineNumber = [[#{tw001.confirm.deleteAnswerConnectLine}]];
+	var warningInputMsg = [[#{tw001.submit.warningInput}]];
+	var warningSelectAnswerMsg = [[#{tw001.submit.warningSelectAnswer}]];
+	var addAnswerConnectLineMsg = [[#{tw001.question.addAnswerConnectLine}]];
+	var itemExamContent = [[#{tw001.common.examContent}]];
+	var itemStartDateExam = [[#{tw001.common.startDateExam}]];
+	var itemEndDateExam = [[#{tw001.common.endDateExam}]];
+	var itemExamDuration = [[#{tw001.common.examDuration}]];
+	var itemExamMaxNumber = [[#{tw001.common.examMaxNumber}]];
+	
+	$(function() {
+		$("#timeStartExamDate").datepicker({
+			dateFormat: 'dd/mm/yy'
+		}).datepicker('setDate', $.datepicker.formatDate('dd/mm/yy', new Date()));
+		
+		$("#timeEndExamDate").datepicker({
+			dateFormat: 'dd/mm/yy'
+		});
+	});
+	
+</script>
+</head>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<div class="title-screen text-center pt-3">
+			<h2 th:text="${titleScreen}"></h2>
+		</div>
+		<br>
+		<hr class="tw001-hr-strikethrough">
+		<label class="lbl-strikethrough" th:text="#{tw001.common.info}"></label>
+		<form action="/tw007" method="GET" name="TW001Form" id="TW001Form">
+			<div class="row">
+				<div class="col-md-12 row">
+					<div class="col-md-2">
+						<label class="pt-2" th:text="#{tw001.common.examContent}"></label>
+					</div>
+					<div class="col-md-4">
+						<textarea rows="3" cols="" class="form-control w-100" id="examContent" maxlength="500" th:placeholder="#{tw001.question.inputExamContent}"></textarea>
+					</div>
+				</div>
+				<div class="col-md-12 row mt-2">
+					<div class="col-md-2">
+						<label class="pt-2" th:text="#{tw001.common.examClassification}"></label>
+					</div>
+					<div class="col-md-4">
+						<select class="form-control radius w-100" id="examClassification">
+							<option th:each="obj : ${listExamType}" th:value="${obj.key}" th:utext="|${obj.value}|"></option>
+						</select>
+					</div>
+					<div class="col-md-2">
+						<label class="pt-2" th:text="#{tw001.common.examField}"></label>
+					</div>
+					<div class="col-md-4">
+						<select class="form-control radius w-100" id="examSubject">
+							<option th:each="obj : ${listSubjectType}" th:value="${obj.id}" th:utext="|${obj.name}|"></option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-12 row mt-2">
+					<div class="col-md-2">
+						<label class="pt-2" th:text="#{tw001.common.startDateExam}"></label>
+					</div>
+					<div class="col-md-4 row padding-right-0">
+						<div class="col-md-6 padding-right-0">
+							<input type="text" id="timeStartExamDate" class="form-control w-100" maxlength="10">
+						</div>
+						<div class="col-md-3 padding-0 margin-0 padding-left-15">
+							<select class="form-control radius w-100 padding-0-5" id="examStartHours">
+							</select>
+						</div>
+						<div class="col-md-3 padding-0 margin-0 padding-left-15">
+							<select class="form-control radius w-100 padding-0-5" id="examStartMinutes">
+							</select>
+						</div>
+					</div>
+					<div class="col-md-2 col-tw001-exam-end-date">
+						<label class="pt-2" th:text="#{tw001.common.endDateExam}"></label>
+					</div>
+					<div class="col-md-4 row padding-right-0">
+						<div class="col-md-6 padding-right-0">
+							<input type="text" id="timeEndExamDate" class="form-control w-100" maxlength="10">
+						</div>
+						<div class="col-md-3 padding-0 margin-0 padding-left-15">
+							<select class="form-control radius w-100 padding-0-5" id="examEndHours">
+							</select>
+						</div>
+						<div class="col-md-3 padding-0 margin-0 padding-left-15">
+							<select class="form-control radius w-100 padding-0-5" id="examEndMinutes">
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 row mt-2">
+					<div class="col-md-2">
+						<label class="pt-2" th:text="#{tw001.common.examDuration}"></label>
+					</div>
+					<div class="col-md-4 row">
+						<div class="col-md-7">
+							<input type="text" class="form-control format-number-right" id="examDuration" maxlength="3" />
+						</div>
+						<div class="col-md-3 padding-left-0">
+							<label class="pt-2" th:text="#{tw001.common.minutes}"></label>
+						</div>
+					</div>
+					<div class="col-md-2 col-tw001-exam-end-date">
+						<label class="pt-2" th:text="#{tw001.common.examMaxNumber}"></label>
+					</div>
+					<div class="col-md-4 row">
+						<div class="col-md-7">
+							<input type="text" class="form-control format-number-right" id="examMaxNumber" maxlength="3" />
+						</div>
+						<div class="col-md-3 padding-left-0">
+							<label class="pt-2" th:text="#{tw001.common.examTimes}"></label>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 row mt-2">
+					<div class="col-md-3">
+						<label class="pt-2" th:text="#{tw001.common.examRange}"></label>
+					</div>
+					<div class="col-md-9 pt-2 row">
+						<div class="col-md-4">
+							<input type="radio" class="rd-tw001" id="examRange1" name="examRange" value ="0" ><label class="pt-2" th:text="#{tw001.common.examOpen}"></label>
+						</div>
+						<div class="col-md-5">
+							<input type="radio" class="rd-tw001" id="examRange2" name="examRange" value ="1" ><label class="pt-2" th:text="#{tw001.common.examAssignAccess}"></label>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 row mt-2" id="div-exam-after-online">
+					<div class="col-md-3">
+						<label class="pt-2" th:text="#{tw001.common.afterExamOnline}"></label>
+					</div>
+					<div class="col-md-9 pt-2 row">
+						<div class="col-md-4">
+							<input type="radio" class="rd-tw001" id="examAfterOnline1" name="examAfterOnline" value ="0" ><label class="pt-2" th:text="#{tw001.common.changeExamToOffline}"></label>
+						</div>
+						<div class="col-md-5">
+							<input type="radio" class="rd-tw001" id="examAfterOnline2" name="examAfterOnline" value ="1" ><label class="pt-2" th:text="#{tw001.common.closeExam}"></label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<hr class="tw001-hr-strikethrough">
+			<label class="lbl-strikethrough" th:text="#{tw001.common.listQuestion}"></label>
+			<div id="listQuestion">
+			
+<!-- 			Question 1 START -->
+			
+			
+				<div id="question1" class="row mt-2 div-tw001-create-question question" indexQuestion="1">
+					<label class="lbl-tw001-create-question questionNoClass" id="questionNoId1" indexQuestion="1"></label>
+					<div class="w-100 div-tw001-subtract-question">
+						<img th:title="#{tw001.button.title.deleteQuestion}" th:src="@{/resources/images/tw001/icon_remove_tw001.png}" id="deleteQuestion1" class="img-tw001-subtract-question imageTag" onclick="removeQuestion(this);" indexQuestion="1">
+						<img th:title="#{tw001.button.title.clearQuestion}" th:src="@{/resources/images/tw001/icon_clear_tw001.png}" id="clearQuestion1" class="img-tw001-subtract-question imageTag" onclick="clearQuestion(this);" indexQuestion="1">
+					</div>
+					<br>
+					<div class="w-100 row padding-10">
+						<div class="col-md-4">
+							<div class=" row">
+								<div class="col-md-5">
+									<label class="pt-2" th:text="#{tw001.question.questionClassification}"></label>
+								</div>
+								<div class="col-md-7">
+									<select class="form-control radius" id="questionClassificationId1" onchange="changeQuestionClassification(this);" indexQuestion="1">
+										<option th:each="obj : ${listQuestionClassification}" th:value="${obj.key}" th:utext="|${obj.value}|"></option>
+									</select>
+								</div>
+							</div>
+							<div class=" row">
+								<div class="col-md-5">
+									<label class="pt-2" th:text="#{tw001.question.questionCoefficientPoint}"></label>
+								</div>
+								<div class="col-md-7">
+									<input type="text" class="form-control format-number-right questionCoefficientPoint" id="questionCoefficientPointId1" maxlength="4" value="1" onchange="caculationQuestionNo();" indexQuestion="1"/>
+								</div>
+							</div>
+							<img th:title="#{tw001.button.title.referQuestion}" th:src="@{/resources/images/tw001/icon_refer_tw001.png}" id="referQuestion1" class="img-tw001-add-question" onclick="referQuestion(this);" indexQuestion="1">
+						</div>
+						<div class="col-md-8 div-tw001-border-left">
+				
+<!-- 				**************************** Question True/False *************************** -->
+							<div class="" id="questionTrueFalseId1">
+								<textarea rows="3" cols="" class="form-control w-100" id="questionTrueFalseContentId1" maxlength="2000" th:placeholder="#{tw001.question.inputQuestion}"></textarea>
+								<div class="col-md-12 pt-2 row">
+									<div class="col-md-6 padding-right-0 pt-2">
+										<input type="radio" class="rd-tw001" id="answerTrueId1" name="answerTrueFalseName1" value ="0" >True
+									</div>
+									<div class="col-md-6 padding-right-0 pt-2">
+										<input type="radio" class="rd-tw001" id="answerFalseId1" name="answerTrueFalseName1" value ="1" >False
+									</div>
+								</div>
+							</div>
+				
+<!-- 				**************************** Question one answer correct *************************** -->
+							<div class="" id="questionOneCorrectId1">
+								<textarea rows="3" cols="" class="form-control w-100" id="questionOneCorrectContentId1" maxlength="2000" th:placeholder="#{tw001.question.inputQuestion}"></textarea>
+								<div class="col-md-12 pt-2 row">
+									<div class="col-md-1 padding-right-0 pt-2">
+										<input type="radio" class="rd-tw001" id="oneCorrectAnswerAId1" name="answerOneCorrectName1" value ="A" >A
+									</div>
+									<div class="col-md-5 padding-left-0">
+										<input type="text" class="form-control w-100 answerOneCorrectContentClass1" id="answerOneCorrectContentAId1" maxlength="500" th:placeholder="#{tw001.question.inputAnswer}"/>
+									</div>
+									<div class="col-md-1 padding-right-0 pt-2">
+										<input type="radio" class="rd-tw001" id="oneCorrectAnswerBId1" name="answerOneCorrectName1" value ="B" >B
+									</div>
+									<div class="col-md-5 padding-left-0">
+										<input type="text" class="form-control w-100 answerOneCorrectContentClass1" id="answerOneCorrectContentBId1" maxlength="500" th:placeholder="#{tw001.question.inputAnswer}"/>
+									</div>
+								</div>
+								<div class="col-md-12 pt-2 row">
+									<div class="col-md-1 padding-right-0 pt-2">
+										<input type="radio" class="rd-tw001" id="oneCorrectAnswerCId1" name="answerOneCorrectName1" value ="C" >C
+									</div>
+									<div class="col-md-5 padding-left-0">
+										<input type="text" class="form-control w-100 answerOneCorrectContentClass1" id="answerOneCorrectContentCId1" maxlength="500" th:placeholder="#{tw001.question.inputAnswer}"/>
+									</div>
+									<div class="col-md-1 padding-right-0 pt-2">
+										<input type="radio" class="rd-tw001" id="oneCorrectAnswerDId1" name="answerOneCorrectName1" value ="D" >D
+									</div>
+									<div class="col-md-5 padding-left-0">
+										<input type="text" class="form-control w-100 answerOneCorrectContentClass1" id="answerOneCorrectContentDId1" maxlength="500" th:placeholder="#{tw001.question.inputAnswer}"/>
+									</div>
+								</div>
+							</div>
+				
+<!-- 				**************************** Question many answer correct *************************** -->
+							<div class="" id="questionManyCorrectId1">
+								<textarea rows="3" cols="" class="form-control w-100" id="questionManyCorrectContentId1" maxlength="2000" th:placeholder="#{tw001.question.inputQuestion}"></textarea>
+								<div class="col-md-12 pt-2 row">
+									<div class="col-md-1 padding-right-0 pt-2">
+										<input type="checkbox" class="ckb-tw001" id="answerManyCorrectAId1" name="answerManyCorrectName1" value ="A" >A
+									</div>
+									<div class="col-md-5 padding-left-0">
+										<input type="text" class="form-control w-100 answerManyCorrectContentClass1" id="answerManyCorrectContentAId1" maxlength="500" th:placeholder="#{tw001.question.inputAnswer}"/>
+									</div>
+									<div class="col-md-1 padding-right-0 pt-2">
+										<input type="checkbox" class="ckb-tw001" id="answerManyCorrectBId1" name="answerManyCorrectName1" value ="B" >B
+									</div>
+									<div class="col-md-5 padding-left-0">
+										<input type="text" class="form-control w-100 answerManyCorrectContentClass1" id="answerManyCorrectContentBId1" maxlength="500" th:placeholder="#{tw001.question.inputAnswer}"/>
+									</div>
+								</div>
+								<div class="col-md-12 pt-2 row">
+									<div class="col-md-1 padding-right-0 pt-2">
+										<input type="checkbox" class="ckb-tw001" id="answerManyCorrectCId1" name="answerManyCorrectName1" value ="C" >C
+									</div>
+									<div class="col-md-5 padding-left-0">
+										<input type="text" class="form-control w-100 answerManyCorrectContentClass1" id="answerManyCorrectContentCId1" maxlength="500" th:placeholder="#{tw001.question.inputAnswer}"/>
+									</div>
+									<div class="col-md-1 padding-right-0 pt-2">
+										<input type="checkbox" class="ckb-tw001" id="answerManyCorrectDId1" name="answerManyCorrectName1" value ="D" >D
+									</div>
+									<div class="col-md-5 padding-left-0">
+										<input type="text" class="form-control w-100 answerManyCorrectContentClass1" id="answerManyCorrectContentDId1" maxlength="500" th:placeholder="#{tw001.question.inputAnswer}"/>
+									</div>
+								</div>
+							</div>
+				
+<!-- 				**************************** Question connect line *************************** -->
+							<div class="" id="questionConnectLineId1">
+								<textarea rows="3" cols="" class="form-control w-100" id="questionConnectLineContentId1" maxlength="2000" th:placeholder="#{tw001.question.inputQuestion}"></textarea>
+								<div id="questionConnectLineAnswerId1" indexQuestion="1">
+									<div class="col-md-12 pt-2 row margin-0 padding-5-0 answerQuestionConnectLineClass" id="answerQuestionConnectLineId1-1" indexQuestion="1" indexAnswer="1">
+										<div class="row div-tw001answer-connect-line-left">
+											<label class="pt-2 lbl-tw001-answer-connect-line answerCharClass" id="answerCharId1-1">A</label>
+											<input type="text" class="form-control txt-tw001-answerConnectLine" id="answerCharContentId1-1" maxlength="500" th:placeholder="#{tw001.question.inputAnswer}"/>
+										</div>
+										<div class="div-tw001answer-connect-line-center">
+											<select class="form-control w-75 margin-left-5 radius connectLineQuestion" id="connectLineQuestionId1-1">
+												<option value="1">1</option>
+											</select>
+										</div>
+										<div class="row div-tw001answer-connect-line-right">
+											<label class="pt-2 lbl-tw001-answer-connect-line answerNumberClass" id="answerNumberId1-1">1</label>
+											<input type="text" class="form-control txt-tw001-answerConnectLine" id="answerNumberContentId1-1" maxlength="500" th:placeholder="#{tw001.question.inputAnswer}" />
+										</div>
+										<div class="div-tw001answer-connect-line-img">
+											<img th:title="#{tw001.button.title.deleteAnswer}" th:src="@{/resources/images/tw001/icon_remove_tw001.png}" class="img-tw001-subtract-question imageTag" id="answerQuestionConnectLineImageId1-1" onclick="removeAnswerConnectLine(this);" indexQuestion="1" indexAnswer="1">
+										</div>
+									</div>
+								</div>
+								<img th:title="#{tw001.button.title.addAnswer}" th:src="@{/resources/images/tw001/icon_add_tw001.png}" id="addAnswer1" class="img-tw001-add-question" onclick="addAnswer(this);" indexQuestion="1">
+							</div>
+						</div>
+					</div>
+				</div>
+<!-- 			Question 1 END -->
+
+			</div>
+			<img th:title="#{tw001.button.title.addQuestion}" th:src="@{/resources/images/tw001/icon_add_tw001.png}" class="img-tw001-add-question imageTag" onclick="addQuestion();">
+			<br>
+			<br>
+			<label class="pt-2" id="txt-questionSummary"></label>
+			<div class="col-md-12 w-100 div-tw001-button">
+				<button class="btn btn-ksj btn-primary" id="btn_submitInput" type="button" th:text="#{tw001.button.createExam}" onclick="submitExam();"></button>
+				<button class="btn btn-ksj btn-primary" id="btn_cancelInput" type="button" th:text="#{tw001.button.cancel}" onclick="cancelExam();"></button>
+			</div>
+			
+			
+		</form>
+		<br> <br>
+	</div>
+	
+</body>
+</html>

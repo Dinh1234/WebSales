@@ -1,0 +1,28 @@
+use teamwork;
+ALTER TABLE `teamwork`.`app_user` 
+ADD COLUMN `NAME` Varchar(50) NOT NULL AFTER `USER_NAME`;
+
+ALTER TABLE `teamwork`.`question_detail` 
+ADD COLUMN `AWSER_CORRECT` VARCHAR(50) NULL DEFAULT NULL AFTER `AWSER`,
+CHANGE COLUMN `AWSER` `AWSER` TEXT(2000) NULL DEFAULT NULL ;
+
+use teamwork;
+CREATE TABLE `teamwork`.`HISTORY_EXAM` (  
+	`ID` varchar(20) NOT NULL,
+	`QUESTION_BASIC_ID` varchar(20) NOT NULL ,
+    `QUESTION_DETAIL_ID` varchar(20) NOT NULL ,
+	`QUESTION_TYPE` varchar(10) NOT NULL ,
+    `USER_EXAM_ID` varchar(20) NOT NULL ,
+	`TIME_START_EXAM` varchar(16) NOT NULL ,
+    `TIME_WORK_EXAM` varchar(3) NOT NULL ,
+    `ANSWER_RESULT` varchar(50) NULL ,
+    `QUESTION_RESULT` varchar(50) NOT NULL ,
+    `DEL_FLAG` Varchar(1) NOT NULL,
+	`CREATE_USER` varchar(50)  NOT NULL,
+	`CREATE_PROGRAM` varchar(50)  NOT NULL,
+	`CREATE_DATE` Datetime NOT NULL,
+	`UPDATE_USER` varchar(50)  NOT NULL,
+	`UPDATE_PROGRAM` varchar(50)  NOT NULL,
+	`UPDATE_DATE` Datetime NOT NULL,
+    PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

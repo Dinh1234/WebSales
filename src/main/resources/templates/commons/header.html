@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+</head>
+<body>
+	<th:block th:fragment="header">
+		<nav class="navbar navbar-inverse navbar-static-top nav"
+			>
+			<div class="container">
+				<a th:href="@{/}">Home</a> | &nbsp; <a
+					th:href="@{/userInfo}">User Info</a> | &nbsp; <a
+					th:href="@{/admin}">Admin</a> | &nbsp; <a
+					th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Logout</a>
+					<a th:href="@{/tw001}">Tạo câu hỏi</a>
+					<a th:href="@{/tw003}">Trả lời câu hỏi</a>
+			</div>
+		</nav>
+	</th:block>
+</body>
+</html>

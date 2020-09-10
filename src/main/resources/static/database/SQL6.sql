@@ -1,0 +1,3 @@
+use teamwork;
+ALTER TABLE `teamwork`.`history_exam_detail` 
+ADD COLUMN `QUESTION_TYPE` VARCHAR(20) NOT NULL AFTER `QUESTION_DETAIL_ID`;

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{commons/main}">
+<head>
+<title>ABC</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/resources/css/app/tw003/tw003.css}" />
+<script type="text/javascript"
+	th:src="@{/resources/js/app/tw003/tw003.js}"></script>
+</head>
+<script>
+	var baseUrl = '/';
+</script>
+<body>
+	<div layout:fragment="content" th:remove="tag">
+		<div class="title-screen text-center pt-3">
+			<h2 th:text="${@baseTag.message('tw003.examResult.screenName')}"></h2>
+			<hr>
+		</div>
+		<!-- Hidden input of list KeyValue -->
+		<!-- Table -->
+
+		<div class="row">
+			<div class="col-md-12 row">
+				<div class="col-md-2">
+					<label class="h2 tw-title"
+						th:utext="${@baseTag.message('tw003.examResult.title')}"></label>
+				</div>
+				<div class="col-md-10">
+					<label class="h2 tw-title" th:utext="${TW003Form.orderBasicId}"></label>
+				</div>
+			</div>
+			<div class="col-md-12 row">
+				<div class="col-md-2">
+					<label class="h2 tw-title"
+						th:text="${@baseTag.message('tw003.examResult.infoTeacher')}"></label>
+				</div>
+				<div class="col-md-10">
+					<label class="h2 tw-title text-primary"
+						th:text="${TW003Form.userCreateName}"></label>
+				</div>
+			</div>
+			<div class="col-md-12 row">
+				<div class="col-md-2">
+					<label class="h2 tw-title"
+						th:text="${@baseTag.message('tw003.examResult.dateExam')}"></label>
+				</div>
+				<div class="col-md-10">
+					<label class="h2 tw-title" th:text="${TW003Form.timeSrartExam}"></label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-9"></div>
+			<div class="col-md-3">
+				<th:bock
+					th:utext="${@baseTag.message('tw003.examResult.messageCounter')}"></th:bock>
+				: <span class="ul--red js-counter">10s</span>
+			</div>
+		</div>
+		<div class="pr-0">
+			<table
+				class="table table-hover table-striped table-bordered table-sm pd-0"
+				id="tbl_datatables">
+				<thead class="thead-info text-white bg-info">
+					<tr>
+						<th class="text-center align-middle" scope="col"><th:bock
+								th:utext="${@baseTag.message('tw003.examResultInfo.idStudent')}"></th>
+						<th class="text-center align-middle" scope="col"><th:bock
+								th:utext="${@baseTag.message('tw003.examResultInfo.nameStudent')}"></th>
+						<th class="text-center align-middle" scope="col"><th:bock
+								th:utext="${@baseTag.message('tw003.examResultInfo.numberAnswerCorrect')}"></th>
+						<th class="text-center align-middle" scope="col"><th:bock
+								th:utext="${@baseTag.message('tw003.examResultInfo.scoreExam')}"></th>
+						<th class="text-center align-middle" scope="col"><th:bock
+								th:utext="${@baseTag.message('tw003.examResultInfo.timeExam')}"></th>
+						<th class="text-center align-middle" scope="col"><th:bock
+								th:utext="${@baseTag.message('tw003.examResultInfo.rankExam')}"></th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+
+		<form th:object="${TW003Form}" th:action="${TW003Form}" method="GET"
+			name="TW003Form" class="js-tw003Form">
+			<input type="hidden" name="subjectType" id="subjectType"
+				th:value="*{subjectType}" /> <input type="hidden"
+				name="questionType" id="questionType" th:value="*{questionType}" />
+			<input type="hidden" name="orderBasicId" id="orderBasicId"
+				th:value="*{orderBasicId}" />
+		</form>
+	</div>
+</body>
+</html>

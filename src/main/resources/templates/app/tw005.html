@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+	<script type="text/javascript" th:inline="javascript">
+
+		$(function() {
+			$("#timeCreateExamStart").datepicker({
+				dateFormat: 'dd/mm/yy'
+			});
+			
+			$("#timeCreateExamEnd").datepicker({
+				dateFormat: 'dd/mm/yy'
+			});
+		});
+		
+	</script>
+</head>
+<body>
+	<th:block th:fragment="popup-referQuestion">
+		<div class="modal fade" id="modal-referQuestion" role="dialog" data-backdrop="static">
+			<div class="modal-dialog tw005-modal">
+				<div class="title-screen text-center pt-3">
+					<h2 id="lbl_tw001_title"></h2>
+				</div>
+				<hr>
+				<form id="frm_search">
+					<div class="row">
+						<div class="form-group col-md-12 row">
+							<div class="col-md-3">
+								<select class="form-control radius" id="subjectType" name="subjectType">
+								</select>
+							</div>
+							<div class="col-md-3">
+								<select class="form-control radius" id="examTitle" name="examTitle">
+								</select>
+							</div>
+							<div class="col-md-3">
+								<input type="text" id="timeCreateExamStart" class="form-control w-100" maxlength="10">
+							</div>
+							<div class="col-md-3">
+								<input type="text" id="timeCreateExamEnd" class="form-control w-100" maxlength="10">
+							</div>
+						</div>
+					</div>
+				</form>
+				<div class="pr-0">
+					<table
+						class="table table-hover table-striped table-bordered table-sm"
+						id="tbl_datatables">
+						<thead class="thead-info text-white bg-info">
+							<tr>
+								<th scope="col" class="text-center align-middle"><th:bock th:utext="${@baseTag.message('tw005.item.no')}"></th>
+								<th scope="col" class="text-center align-middle"><th:bock th:utext="${@baseTag.message('tw005.questionType')}"></th>
+								<th scope="col" class="text-center align-middle"><th:bock th:utext="${@baseTag.message('tw005.questionContent')}"></th>
+								<th scope="col" class="text-center align-middle"><th:bock th:utext="${@baseTag.message('tw005.listAnswer')}"></th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<form name="tw002" action="tw002" method = "POST">
+					<input type="hidden" name="action" />
+					<input type="hidden" name="screenSource" /> 
+					<input type="hidden" name="id" /> 
+					<input type="hidden" name="typeQuestion" />
+				</form>
+				<br> <br>
+			</div>
+		</div>
+	</th:block>
+</body>
+</html>

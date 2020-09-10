@@ -1,0 +1,5 @@
+ALTER TABLE `teamwork`.`question_detail` 
+CHANGE COLUMN `TYPE` `TYPE` VARCHAR(20) NULL DEFAULT NULL ;
+
+ALTER TABLE `teamwork`.`question_basic` 
+CHANGE COLUMN `TYPE` `TYPE` VARCHAR(20) NOT NULL ;

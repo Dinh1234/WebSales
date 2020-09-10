@@ -1,0 +1,74 @@
+/**
+ * Cai gi dung chung cho ca he thong thi dua vao day
+ * 
+ */
+.lbl{
+	
+}
+.text-align-center{
+	text-align:center;
+}
+.table-sorting-disabled {
+	pointer-events: none;
+}
+
+@media (min-width: 576px)
+#carbonads {
+    max-width: 330px;
+    border-radius: 4px;
+}
+#carbonads {
+    padding: 15px 15px 15px 160px;
+    margin: 2rem 0;
+    overflow: hidden;
+    font-size: .8125rem;
+    line-height: 1.4;
+    text-align: left;
+}
+
+#carbonads a {
+    color: #333;
+    text-decoration: none;
+}
+.carbon-img {
+    float: left;
+    margin-left: -145px;
+}
+
+#footer {
+    text-align: center;
+    clear: both;
+    padding: 10px;
+}
+
+.bd-navbar {
+    position: -webkit-sticky;
+    position: fixed;
+    top: 0;
+    width:100%;
+    z-index: 1071;
+    min-height: 3rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
+    background-color: #fafafb; box-shadow: 0 1px 0 rgba(12, 13, 14, 0.1), 0 1px 6px rgba(59, 64, 69, 0.1)
+}
+.header-margin{
+	margin-top:3em;
+	margin-bottom:3em;
+}
+
+/**for all datatable*/
+.dataTables_wrapper {
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+
+
+.error
+{
+	background-color:#ffcccc !important;
+}
+
+.error:focus
+{
+	background-color:#ffcccc !important;
+}
